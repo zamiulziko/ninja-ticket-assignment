@@ -161,10 +161,10 @@
 
 
             function pricingTotal(){
-                const firstClassInput = document.getElementById("f-price");
+                const firstClassInput = document.getElementById("f-class-quantity");
                 const firstClassPrice = parseInt(firstClassInput.value);
 
-                const economyClassInput = document.getElementById("e-price");
+                const economyClassInput = document.getElementById("e-class-quantity");
                 const economyClassPrice = parseInt(economyClassInput.value) ;
 
                 const totalPrice = firstClassPrice * 150 + economyClassPrice * 100;
@@ -213,6 +213,7 @@
                 economyClassInput.value = economyClassNewQuantity;
                 const economyClassPrice = economyClassNewQuantity * 100;
                 document.getElementById("e-price").innerText = "$" + economyClassPrice;
+                pricingTotal();
                 
                 
             };
