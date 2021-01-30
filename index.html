@@ -90,7 +90,7 @@
                             <p>Subtotal</p>
                         </div>
                         <div class="right">
-                            <h5 id="sub-total-price">$500</h5>
+                            <h5 id="total-price">$0</h5>
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@
                             <p>Charge 10% VAT</p>
                         </div>
                         <div class="right">
-                            <h5 id="tax-amount">$50</h5>
+                            <h5 id="tax-amount">$0</h5>
                         </div>
                     </div>
                     <hr>
@@ -108,7 +108,7 @@
                             <h4>Total</h4>
                         </div>
                         <div class="right">
-                            <h5 id="pay-amount">$550</h5>
+                            <h5 id="pay-amount">$0</h5>
                         </div>
                     </div>
                 </div>
@@ -118,15 +118,25 @@
             <div class="booking-content">
                 <h1>discover <br> around the world</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
-            </div>
+            </div>        
+        </main>
+    <div id="message-area">
+        <h1 class="text">!Congratulations!</h1>
         
-        <div>
-            <h2 id="transaction-area">Transtion Display Area</h2>
-        </div>
-    </main>
+    </div>
     <script>
+            const bookingBtn = document.getElementById("booking");
+            bookingBtn.addEventListener("click", function(){
+                const bookingArea = document.getElementById("booking-area");
+                bookingArea.style.display = "none";
+                const messageArea = document.getElementById("message-area");
+                messageArea.style.display = "block";
+
+            })
+
             document.getElementById("f-class-increase").addEventListener("click", function(){
                 pricingFirstClassTicket(true);
+                
             });
 
             document.getElementById("f-class-decrease").addEventListener("click", function(){
@@ -135,8 +145,7 @@
             });
             function pricingFirstClassTicket(isIncrease){
                 const firstClassInput = document.getElementById("f-class-quantity");
-                const firstClassQuantity = parseInt(firstClassInput.value);
-                // const firstClassNewQuantity = firstClassQuantity - 1;
+                const firstClassQuantity = parseInt(firstClassInput.value);                
                 let firstClassNewQuantity = firstClassQuantity;
                 if(isIncrease == true){
                     firstClassNewQuantity = firstClassQuantity + 1;
@@ -144,11 +153,30 @@
                 if(isIncrease == false && firstClassQuantity > 0){
                     firstClassNewQuantity = firstClassQuantity - 1;
                 }
-
                 firstClassInput.value = firstClassNewQuantity;
                 const firstClassPrice = firstClassNewQuantity * 150;
                 document.getElementById("f-price").innerText = "$" + firstClassPrice;
+                pricingTotal();
             }
+
+
+            function pricingTotal(){
+                const firstClassInput = document.getElementById("f-price");
+                const firstClassPrice = parseInt(firstClassInput.value);
+
+                const economyClassInput = document.getElementById("e-price");
+                const economyClassPrice = parseInt(economyClassInput.value) ;
+
+                const totalPrice = firstClassPrice * 150 + economyClassPrice * 100;
+                document.getElementById("total-price").innerText = "$" + totalPrice;
+
+                const tax = totalPrice * 0.1;
+                document.getElementById("tax-amount").innerText = "$" + tax;
+
+                const total = totalPrice + tax;
+                document.getElementById("pay-amount").innerText = "$" + total;
+            }  
+              
 
             document.getElementById("f-class-zero").addEventListener("click", function(){
                 const firstClassInput = document.getElementById("f-class-quantity");
@@ -157,34 +185,10 @@
                 firstClassInput.value = firstClassNewQuantity;
                 const firstClassPrice = firstClassNewQuantity * 150;
                 document.getElementById("f-price").innerText = "$" + firstClassPrice;
-            });
+                
+            });   
 
-            // document.getElementById("f-class-increase").addEventListener("click", function(){
-            //     const firstClassInput = document.getElementById("f-class-quantity");
-            //     const firstClassQuantity = parseInt(firstClassInput.value);
-            //     const firstClassNewQuantity = firstClassQuantity + 1;
-            //     firstClassInput.value = firstClassNewQuantity;
-            //     const firstClassPrice = firstClassNewQuantity * 150;
-            //     document.getElementById("f-price").innerText = "$" + firstClassPrice;
-            // })
-
-            // document.getElementById("f-class-decrease").addEventListener("click", function(){
-            //     const firstClassInput = document.getElementById("f-class-quantity");
-            //     const firstClassQuantity = parseInt(firstClassInput.value);
-            //     const firstClassNewQuantity = firstClassQuantity - 1;
-            //     firstClassInput.value = firstClassNewQuantity;
-            //     const firstClassPrice = firstClassNewQuantity * 150;
-            //     document.getElementById("f-price").innerText = "$" + firstClassPrice;
-            // })
-
-            // document.getElementById("f-class-zero").addEventListener("click", function(){
-            //     const firstClassInput = document.getElementById("f-class-quantity");
-            //     const firstClassQuantity = parseInt(firstClassInput.value);
-            //     const firstClassNewQuantity = firstClassQuantity * 0;
-            //     firstClassInput.value = firstClassNewQuantity;
-            //     const firstClassPrice = firstClassNewQuantity * 150;
-            //     document.getElementById("f-price").innerText = "$" + firstClassPrice;
-            // })
+            
 
             // Economy Class
 
@@ -197,19 +201,20 @@
             });
             function pricingEconomyClassTicket(isIncrease){
                 const economyClassInput = document.getElementById("e-class-quantity");
-                const economyClassQuantity = parseInt(economyClassInput.value);
-                // const economyClassNewQuantity = economyClassQuantity - 1;
+                const economyClassQuantity = parseInt(economyClassInput.value);                
                 let economyClassNewQuantity = economyClassQuantity;
                 if(isIncrease == true){
                     economyClassNewQuantity = economyClassQuantity + 1;
-                }
+                };
                 if(isIncrease == false && economyClassQuantity > 0){
                     economyClassNewQuantity = economyClassQuantity - 1;
-                }
+                };
 
                 economyClassInput.value = economyClassNewQuantity;
                 const economyClassPrice = economyClassNewQuantity * 100;
                 document.getElementById("e-price").innerText = "$" + economyClassPrice;
+                
+                
             };
 
             document.getElementById("e-class-zero").addEventListener("click", function(){
@@ -220,6 +225,9 @@
                 const economyClassPrice = economyClassNewQuantity * 100;
                 document.getElementById("e-price").innerText = "$" + economyClassPrice;
             });
+
+          
+
 
             //  document.getElementById("e-class-increase").addEventListener("click", function(){
             //     const economyClassInput = document.getElementById("e-class-quantity");
@@ -247,6 +255,35 @@
             //     const economyClassPrice = economyClassNewQuantity * 100;
             //     document.getElementById("e-price").innerText = "$" + economyClassPrice;
             // });
+
+            // Economy Class
+
+            // document.getElementById("f-class-increase").addEventListener("click", function(){
+            //     const firstClassInput = document.getElementById("f-class-quantity");
+            //     const firstClassQuantity = parseInt(firstClassInput.value);
+            //     const firstClassNewQuantity = firstClassQuantity + 1;
+            //     firstClassInput.value = firstClassNewQuantity;
+            //     const firstClassPrice = firstClassNewQuantity * 150;
+            //     document.getElementById("f-price").innerText = "$" + firstClassPrice;
+            // })
+
+            // document.getElementById("f-class-decrease").addEventListener("click", function(){
+            //     const firstClassInput = document.getElementById("f-class-quantity");
+            //     const firstClassQuantity = parseInt(firstClassInput.value);
+            //     const firstClassNewQuantity = firstClassQuantity - 1;
+            //     firstClassInput.value = firstClassNewQuantity;
+            //     const firstClassPrice = firstClassNewQuantity * 150;
+            //     document.getElementById("f-price").innerText = "$" + firstClassPrice;
+            // })
+
+            // document.getElementById("f-class-zero").addEventListener("click", function(){
+            //     const firstClassInput = document.getElementById("f-class-quantity");
+            //     const firstClassQuantity = parseInt(firstClassInput.value);
+            //     const firstClassNewQuantity = firstClassQuantity * 0;
+            //     firstClassInput.value = firstClassNewQuantity;
+            //     const firstClassPrice = firstClassNewQuantity * 150;
+            //     document.getElementById("f-price").innerText = "$" + firstClassPrice;
+            // })
 
 
 

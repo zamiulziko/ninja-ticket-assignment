@@ -130,7 +130,7 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
-#transaction-area{
+#message-area{
     display: none;
 }
 #f-price{
@@ -140,5 +140,10 @@ nav ul li a:hover, a.active{
 #e-price{
     float: right;
     color:rgb(2, 251, 2);
+}
+.text{
+    color: red;
+    background-color: rgb(2, 251, 2);
+    margin: 80px 400px;
 }
 
