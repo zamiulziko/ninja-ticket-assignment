@@ -63,7 +63,7 @@ nav ul li a:hover, a.active{
     align-items: center;
 }
 .inp-width{
-    min-width: 300px;
+    min-width: 100px;
 }
 .plus-minus-btn{
     color: #3352F2;
@@ -71,6 +71,16 @@ nav ul li a:hover, a.active{
     padding: 2px;
     margin-top: 10px;
     word-spacing: 20px;
+    
+}
+.btn-size{
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+
+}
+.btn-color{
+    color: red;
 }
 .booking-form  .calculations{
     margin: 10px 0;
@@ -120,3 +130,7 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
+#transaction-area{
+    display: none;
+}
+

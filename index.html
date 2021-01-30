@@ -27,82 +27,189 @@
     </header>
 
     <!--Booking Section-->
-    <main class="main-content container">
-        <div class="booking-form">
-            <h3>Booking Flights</h3>
-            <div class="input-group">
-                <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
-            </div>
-            <div class="input-group">
-                <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
-            </div>
-            <div class="inputs">
+    <main id="booking-area" class="main-content container">
+            <div class="booking-form">
+                <h3>Booking Flights</h3>
                 <div class="input-group">
-                    <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                    <label for="">Flying From</label>
+                    <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
                 </div>
                 <div class="input-group">
-                    <label for="">Return</label>
-                    <input class="inp-style" type="date" name="">
+                    <label for="">Flying To</label>
+                    <input class="inp-style" type="text" name="" placeholder="New York, United States">
                 </div>
+                <div class="inputs">
+                    <div class="input-group">
+                        <label" for="">Departure</label>
+                        <input class="inp-style" type="date" name="">
+                    </div>
+                    <div class="input-group">
+                        <label for="">Return</label>
+                        <input class="inp-style" type="date" name="">
+                    </div>
+                </div>
+
+                <div class="input-group f-class">                
+
+                    <div>                       
+                        <label id="case-total" for="">First Class ($150)</label>
+                        
+                        <input id="case-count" class="inp-style inp-width" type="number" name="">
+                    </div>
+                    <div id="f-class-increase" class="plus-minus-btn">
+                        <button class="btn-size">+</button>                    
+                    </div>                    
+                    <div id="f-class-decrease" class="plus-minus-btn">                    
+                        <button class="btn-size">-</button> 
+                    </div>
+                    <div class="plus-minus-btn">                    
+                        <button class="btn-size btn-color">x</button> 
+                    </div>
+                        
+                </div>
+                
+                <div class="input-group f-class">
+                    <div>
+                        <label for="">Economy ($100)</label>
+                        <input class="inp-style inp-width" type="number" name="">
+                    </div>
+                    <div class="plus-minus-btn">
+                        <button class="btn-size">+</button>                    
+                    </div>                    
+                    <div class="plus-minus-btn">                    
+                        <button class="btn-size">-</button> 
+                    </div>
+                    <div class="plus-minus-btn">                    
+                        <button class="btn-size btn-color">x</button> 
+                    </div>
+                </div>
+                <div class="calculations">
+                    <div class="amount">
+                        <div class="left">
+                            <p>Subtotal</p>
+                        </div>
+                        <div class="right">
+                            <h5 id="total-price">$500</h5>
+                        </div>
+                    </div>
+
+                    <div class="amount">
+                        <div class="left">
+                            <p>Charge 10% VAT</p>
+                        </div>
+                        <div class="right">
+                            <h5 id="tax-amount">$50</h5>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="amount">
+                        <div class="left">
+                            <h4>Total</h4>
+                        </div>
+                        <div class="right">
+                            <h5 id="pay-amount">$550</h5>
+                        </div>
+                    </div>
+                </div>
+                <button id="booking" class="btn-style">Book Now</button>
             </div>
-            <div class="input-group f-class">
-                <div>
-                    <label for="">First Class ($150)</label>
-                    <input class="inp-style inp-width" type="number" name="">
-                </div>
-                <div class="plus-minus-btn">
-                    <p>+ -</p>
-                </div>
+
+            <div class="booking-content">
+                <h1>discover <br> around the world</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
             </div>
+        
+        <div>
+            <h2 id="transaction-area">Transtion Display Area</h2>
+        </div>
+    </main>
+    <script>
+            const bookingBtn = document.getElementById("booking");
+            bookingBtn.addEventListener("click", function(){
+                const bookingArea = document.getElementById("booking-area");
+                bookingArea.style.display = "none";
+                const transactionArea = document.getElementById("transaction-area");
+                transactionArea.style.display = "block";
+
+            })
+
+
+         document.getElementById("f-class-increase").addEventListener("click", function(){
+           handelProductChange(true);
+
+        });
+
+        document.getElementById("f-class-decrease").addEventListener("click", function(){
+            handelProductChange(false);
+         });
+         function handelProductChange(isIncrease){
+            const caseInput = document.getElementById("case-count");
+            const caseCount = parseInt(caseInput.value);
+            // const caseNewCount = caseCount - 1;
+            let caseNewCount = caseCount;
+            if(isIncrease == true){
+                caseNewCount = caseCount + 1;
+            }
+            if(isIncrease == false && caseCount > 0){
+                caseNewCount = caseCount -1;
+            }
+            caseInput.value = caseNewCount;
+            const caseTotal = caseNewCount * 150;
+            document.getElementById("case-total").innerText = "$" + caseTotal;
+            calculateTotal();
+
             
-            <div class="input-group f-class">
-                <div>
-                    <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
-                </div>
-                <div class="plus-minus-btn">
-                    <p> <span>+</span> <span>-</span> </p>
-                </div>
-            </div>
-            <div class="calculations">
-                <div class="amount">
-                    <div class="left">
-                        <p>Subtotal</p>
-                    </div>
-                    <div class="right">
-                        <p>$500</p>
-                    </div>
-                </div>
 
-                <div class="amount">
-                    <div class="left">
-                        <p>Charge 10% VAT</p>
-                    </div>
-                    <div class="right">
-                        <p>$50</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="amount">
-                    <div class="left">
-                        <h4>Total</h4>
-                    </div>
-                    <div class="right">
-                        <p>$550</p>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-style">Book Now</button>
-        </div>
+         }
 
-        <div class="booking-content">
-            <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
-        </div>
-    </section>
+         function calculateTotal(){
+             const ticketPrice = document.getElementById("case-count");
+             const caseCount = parseInt(ticketPrice.value);
+
+             // 2nd step er jonno
+
+            //  const ticketPrice = document.getElementById("case-count");
+            //  const caseCount = parseInt(ticketPrice.value);
+
+            //  const totalPrice = caseCount * 150 + caseCount * 100;
+            //  document.getElementById("total-price").innerText = "$" + totalPrice;
+        
+
+             
+
+             const totalPrice = caseCount * 150;
+             document.getElementById("total-price").innerText = "$" + totalPrice;
+
+             const tax = totalPrice * 0.1;
+             document.getElementById("tax-amount").innerText = "$" + tax;
+            const payAmount = totalPrice + tax;
+            document.getElementById("pay-amount").innerText = "$" + payAmount;
+         
+            }
+
+
+        // document.getElementById("case-increase").addEventListener("click", function(){
+        //    const caseInput = document.getElementById("case-count");
+        //    const caseCount = parseInt(caseInput.value);
+        //    const caseNewCount = caseCount + 1;
+        //    caseInput.value = caseNewCount;
+        //    const caseTotal = caseNewCount * 150;
+        //    document.getElementById("case-total").innerText = "$" + caseTotal;
+
+        // });
+
+        // document.getElementById("case-decrease").addEventListener("click", function(){
+        //     const caseInput = document.getElementById("case-count");
+        //     const caseCount = parseInt(caseInput.value);
+        //     const caseNewCount = caseCount - 1;
+        //     caseInput.value = caseNewCount;
+        //     const caseTotal = caseNewCount * 150;
+        //     document.getElementById("case-total").innerText = "$" + caseTotal;
+
+
+        // });
+
+    </script>
 
     <!--Thank You-->
 </body>
