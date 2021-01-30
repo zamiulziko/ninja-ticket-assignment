@@ -49,40 +49,41 @@
                     </div>
                 </div>
 
-                <div class="input-group f-class">                
+                    <div class="input-group f-class">                
 
-                    <div>                       
-                        <label id="case-total" for="">First Class ($150)</label>
-                        
-                        <input id="case-count" class="inp-style inp-width" type="number" name="">
+                        <div>                       
+                            <label id="case-total" for="">First Class ($150)</label>
+                                  <h5 id="f-price">$0</h5>                     
+                            <input id="f-class-quantity" class="inp-style inp-width" type="number" name="" value="0">
+                        </div>
+                        <div id="f-class-increase" class="plus-minus-btn">
+                            <button class="btn-size">+</button>                    
+                        </div>                    
+                        <div id="f-class-decrease" class="plus-minus-btn">                    
+                            <button class="btn-size">-</button> 
+                        </div>
+                        <div id="f-class-zero" class="plus-minus-btn">                    
+                            <button class="btn-size btn-color">x</button> 
+                        </div>
+                            
                     </div>
-                    <div id="f-class-increase" class="plus-minus-btn">
-                        <button class="btn-size">+</button>                    
-                    </div>                    
-                    <div id="f-class-decrease" class="plus-minus-btn">                    
-                        <button class="btn-size">-</button> 
+                    
+                    <div class="input-group f-class">
+                        <div>
+                            <label for="">Economy ($100)</label>
+                            <h5 id="e-price">$0</h5> 
+                            <input id="e-class-quantity" class="inp-style inp-width" type="number" name="" value="0">
+                        </div>
+                        <div id="e-class-increase" class="plus-minus-btn">
+                            <button class="btn-size">+</button>                    
+                        </div>                    
+                        <div id="e-class-decrease" class="plus-minus-btn">                    
+                            <button class="btn-size">-</button> 
+                        </div>
+                        <div id="e-class-zero" class="plus-minus-btn">                    
+                            <button class="btn-size btn-color">x</button> 
+                        </div>
                     </div>
-                    <div class="plus-minus-btn">                    
-                        <button class="btn-size btn-color">x</button> 
-                    </div>
-                        
-                </div>
-                
-                <div class="input-group f-class">
-                    <div>
-                        <label for="">Economy ($100)</label>
-                        <input class="inp-style inp-width" type="number" name="">
-                    </div>
-                    <div class="plus-minus-btn">
-                        <button class="btn-size">+</button>                    
-                    </div>                    
-                    <div class="plus-minus-btn">                    
-                        <button class="btn-size">-</button> 
-                    </div>
-                    <div class="plus-minus-btn">                    
-                        <button class="btn-size btn-color">x</button> 
-                    </div>
-                </div>
                 <div class="calculations">
                     <div class="amount">
                         <div class="left">
@@ -124,90 +125,63 @@
         </div>
     </main>
     <script>
-            const bookingBtn = document.getElementById("booking");
-            bookingBtn.addEventListener("click", function(){
-                const bookingArea = document.getElementById("booking-area");
-                bookingArea.style.display = "none";
-                const transactionArea = document.getElementById("transaction-area");
-                transactionArea.style.display = "block";
+            document.getElementById("f-class-increase").addEventListener("click", function(){
+                const firstClassInput = document.getElementById("f-class-quantity");
+                const firstClassQuantity = parseInt(firstClassInput.value);
+                const firstClassNewQuantity = firstClassQuantity + 1;
+                firstClassInput.value = firstClassNewQuantity;
+                const firstClassPrice = firstClassNewQuantity * 150;
+                document.getElementById("f-price").innerText = "$" + firstClassPrice;
+            })
 
+            document.getElementById("f-class-decrease").addEventListener("click", function(){
+                const firstClassInput = document.getElementById("f-class-quantity");
+                const firstClassQuantity = parseInt(firstClassInput.value);
+                const firstClassNewQuantity = firstClassQuantity - 1;
+                firstClassInput.value = firstClassNewQuantity;
+                const firstClassPrice = firstClassNewQuantity * 150;
+                document.getElementById("f-price").innerText = "$" + firstClassPrice;
+            })
+
+            document.getElementById("f-class-zero").addEventListener("click", function(){
+                const firstClassInput = document.getElementById("f-class-quantity");
+                const firstClassQuantity = parseInt(firstClassInput.value);
+                const firstClassNewQuantity = firstClassQuantity * 0;
+                firstClassInput.value = firstClassNewQuantity;
+                const firstClassPrice = firstClassNewQuantity * 150;
+                document.getElementById("f-price").innerText = "$" + firstClassPrice;
+            })
+
+            // Economy Class
+
+             document.getElementById("e-class-increase").addEventListener("click", function(){
+                const economyClassInput = document.getElementById("e-class-quantity");
+                const economyClassQuantity = parseInt(economyClassInput.value);
+                const economyClassNewQuantity = economyClassQuantity + 1;
+                economyClassInput.value = economyClassNewQuantity;
+                const economyClassPrice = economyClassNewQuantity * 100;
+                document.getElementById("e-price").innerText = "$" + economyClassPrice;
+            })
+
+            document.getElementById("e-class-decrease").addEventListener("click", function(){
+                const economyClassInput = document.getElementById("e-class-quantity");
+                const economyClassQuantity = parseInt(economyClassInput.value);
+                const economyClassNewQuantity = economyClassQuantity - 1;
+                economyClassInput.value = economyClassNewQuantity;
+                const economyClassPrice = economyClassNewQuantity * 100;
+                document.getElementById("e-price").innerText = "$" + economyClassPrice;
+            })
+
+            document.getElementById("e-class-zero").addEventListener("click", function(){
+                const economyClassInput = document.getElementById("e-class-quantity");
+                const economyClassQuantity = parseInt(economyClassInput.value);
+                const economyClassNewQuantity = economyClassQuantity * 0;
+                economyClassInput.value = economyClassNewQuantity;
+                const economyClassPrice = economyClassNewQuantity * 100;
+                document.getElementById("e-price").innerText = "$" + economyClassPrice;
             })
 
 
-         document.getElementById("f-class-increase").addEventListener("click", function(){
-           handelProductChange(true);
-
-        });
-
-        document.getElementById("f-class-decrease").addEventListener("click", function(){
-            handelProductChange(false);
-         });
-         function handelProductChange(isIncrease){
-            const caseInput = document.getElementById("case-count");
-            const caseCount = parseInt(caseInput.value);
-            // const caseNewCount = caseCount - 1;
-            let caseNewCount = caseCount;
-            if(isIncrease == true){
-                caseNewCount = caseCount + 1;
-            }
-            if(isIncrease == false && caseCount > 0){
-                caseNewCount = caseCount -1;
-            }
-            caseInput.value = caseNewCount;
-            const caseTotal = caseNewCount * 150;
-            document.getElementById("case-total").innerText = "$" + caseTotal;
-            calculateTotal();
-
-            
-
-         }
-
-         function calculateTotal(){
-             const ticketPrice = document.getElementById("case-count");
-             const caseCount = parseInt(ticketPrice.value);
-
-             // 2nd step er jonno
-
-            //  const ticketPrice = document.getElementById("case-count");
-            //  const caseCount = parseInt(ticketPrice.value);
-
-            //  const totalPrice = caseCount * 150 + caseCount * 100;
-            //  document.getElementById("total-price").innerText = "$" + totalPrice;
-        
-
-             
-
-             const totalPrice = caseCount * 150;
-             document.getElementById("total-price").innerText = "$" + totalPrice;
-
-             const tax = totalPrice * 0.1;
-             document.getElementById("tax-amount").innerText = "$" + tax;
-            const payAmount = totalPrice + tax;
-            document.getElementById("pay-amount").innerText = "$" + payAmount;
-         
-            }
-
-
-        // document.getElementById("case-increase").addEventListener("click", function(){
-        //    const caseInput = document.getElementById("case-count");
-        //    const caseCount = parseInt(caseInput.value);
-        //    const caseNewCount = caseCount + 1;
-        //    caseInput.value = caseNewCount;
-        //    const caseTotal = caseNewCount * 150;
-        //    document.getElementById("case-total").innerText = "$" + caseTotal;
-
-        // });
-
-        // document.getElementById("case-decrease").addEventListener("click", function(){
-        //     const caseInput = document.getElementById("case-count");
-        //     const caseCount = parseInt(caseInput.value);
-        //     const caseNewCount = caseCount - 1;
-        //     caseInput.value = caseNewCount;
-        //     const caseTotal = caseNewCount * 150;
-        //     document.getElementById("case-total").innerText = "$" + caseTotal;
-
-
-        // });
 
     </script>
 

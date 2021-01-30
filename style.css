@@ -133,4 +133,12 @@ nav ul li a:hover, a.active{
 #transaction-area{
     display: none;
 }
+#f-price{
+    float: right;
+    color:rgb(2, 251, 2);
+}
+#e-price{
+    float: right;
+    color:rgb(2, 251, 2);
+}
 
